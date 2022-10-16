@@ -45,15 +45,15 @@ def tracker(request):
     if request.method == 'POST':
         orderId = request.POST.get('orderId', '')
         email = request.POST.get('email', '')
-        # return HttpResponse(f"orderId: {orderId}\n email:{email} ")
         try:
             order = Orders.objects.filter(order_id=orderId, email=email)
+            # print(order[0].items_json)
             if len(order) > 0:
                 update = OrderUpdate.objects.filter(order_id=orderId)
                 updates = []
                 for item in update:
                     updates.append({'text': item.update_desc, 'time': item.timestamp})
-                    response = json.dumps(updates, default=str)
+                    response = json.dumps([updates, order[0].items_json], default=str)
                 return HttpResponse(response)
             else:
                 return HttpResponse('{}')

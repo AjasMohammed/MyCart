@@ -97,7 +97,7 @@ if ($.isEmptyObject(cart)) {
         $('#items').append(mystr);
     }
     mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
-                <span style="font-size:150%; font-weight:500;">Total Price : ${totalCost}/-</span>
+                <span style="font-size:150%; font-weight:500;">Total Amount : ${totalCost}/-</span>
                 <span class="badge"  style="font-size:150%; font-weight:500;"> Total Items : ${totalItems}</span>
                 </li>`
     $('#items').append(mystr);
@@ -106,7 +106,7 @@ document.getElementById('cart').innerHTML = totalItems;
 
 $('#itemsJson').val(JSON.stringify(cart));
 {% if thank %}
-alert("Thanks for Purchasing from us. Your order id is <b>{{id}}</b>. Use it to track your order.");
+alert("Thanks for Purchasing from us. Your order id is {{id}} Use it to track your order.");
 document.location = '/shop/';
 localStorage.clear();
 
