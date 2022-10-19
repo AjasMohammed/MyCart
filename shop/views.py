@@ -30,6 +30,7 @@ def about(request):
 
 
 def contact(request):
+    thank = False
     if request.method == "POST":
         name = request.POST.get('name', '')
         email = request.POST.get('email', '')
@@ -37,8 +38,9 @@ def contact(request):
         desc = request.POST.get('desc', '')
         contact = Contact(name=name, email=email, phone=phone, description=desc)
         contact.save()
+        thank = True
 
-    return render(request, 'shop/contact.html')
+    return render(request, 'shop/contact.html', {'thank': thank})
 
 
 def tracker(request):
@@ -47,7 +49,6 @@ def tracker(request):
         email = request.POST.get('email', '')
         try:
             order = Orders.objects.filter(order_id=orderId, email=email)
-            # print(order[0].items_json)
             if len(order) > 0:
                 update = OrderUpdate.objects.filter(order_id=orderId)
                 updates = []

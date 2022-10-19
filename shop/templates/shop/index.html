@@ -11,11 +11,12 @@ width: 100%;
 height: 15em;
 object-fit:contain;
 }
-body.carousel-control-indicator li{
-background-color: blue;
+.carousel-indicators li{
+background-color: #a8a3a3;
 }
-body.carousel-indicators{
-bottom:0;
+.carousel-indicators{
+bottom:-7%;
+margin:0;
 }
 body .carousel-control-prev-icon{
 background-color: blue;
@@ -58,6 +59,9 @@ height:200px;
 max-width:92%;
 left:15px;
 }
+.slidebtn{
+    border-radius:2em;
+}
 {% endblock %}
 <!--block css-->
 {% block title %} Shop {% endblock %}
@@ -82,12 +86,12 @@ left:15px;
                             <img src="/static/{{i.image}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
-                                <h5 class="card-title" id="pricepr{{i.id}}" style="font-size: 95%;">{{i.price}}/-</h5>
+                                <h5 class="card-title" style="font-size: 95%;"> Price: <span id="pricepr{{i.id}}">{{i.price}}/-</span></h5>
                                 <p class="card-text">{{i.description|slice:"0:50"}} ...</p>
                                 <span id="divpr{{i.id}}" class="divpr">
-                                    <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
+                                    <button id="pr{{i.id}}" class="btn btn-outline-primary cart slidebtn">Add to Cart</button>
                                 </span>
-                                <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-primary">View</button></a>
+                                <a href="/shop/products/{{i.id}}"><button id="qv{{i.id}}" class="btn btn-outline-primary slidebtn">View</button></a>
                             </div>
                         </div>
                     </div>
@@ -164,7 +168,7 @@ left:15px;
             popStr += document.getElementById('name' + item).innerHTML.slice(0, 19) + "...Qty: " + cart[item][0] + '<br>';
             i += 1;
         }
-        popStr += "</div> <a href='/shop/checkout/'><button class='btn btn-primary' id='checkout'>CheckOut</button></a> <button class='btn btn-primary' onclick='clearCart()' id='clearCart'>Clear Cart</button> "
+        popStr += "</div> <a href='/shop/checkout/'><button class='btn btn-outline-primary slidebtn' id='checkout'>CheckOut</button></a> <button class='btn btn-outline-primary slidebtn' onclick='clearCart()' id='clearCart'>Clear Cart</button> "
         // // console.log(popStr)
         document.getElementById('popcart').setAttribute("data-content", popStr);
         $('#popcart').popover('show')
@@ -175,7 +179,7 @@ left:15px;
     function clearCart() {
         cart = JSON.parse(localStorage.getItem('cart'));
         for (var item in cart) {
-            document.getElementById("div" + item).innerHTML = "<button id='" + item + "' class='btn btn-primary cart'>Add to Cart</button>";
+            document.getElementById("div" + item).innerHTML = "<button id='" + item + "' class='btn btn-outline-primary cart slidebtn'>Add to Cart</button>";
         }
         localStorage.clear();
         cart = {};
@@ -190,7 +194,7 @@ left:15px;
         for (var item in cart) {
             totalitem += cart[item][0]
 
-            document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "'>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+            document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus slidebtn'> - </button> <span id='val" + item + "'>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-primary plus slidebtn'> + </button>";
         }
 
         var cartItem = Object.values(cart);
@@ -203,7 +207,7 @@ left:15px;
             if (cartItem[i][0] == 0) {
                 delete cart[key];
 
-                document.getElementById('div' + key).innerHTML = "<button id='" + key + "' class='btn btn-primary cart'>Add to Cart</button>"
+                document.getElementById('div' + key).innerHTML = "<button id='" + key + "' class='btn btn-outline-primary cart slidebtn'>Add to Cart</button>"
 
             }
         }
