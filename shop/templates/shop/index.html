@@ -83,7 +83,7 @@ left:15px;
                     {% for i in product %}
                     <div class="col-xs-3 col-xm-3 col-md-3" style="padding:0; max-width:24%">
                         <div class="card align-items-center" style="width: 17rem;">
-                            <img src="/static/{{i.image}}" class="card-img-top" alt="...">
+                            <img src="/{{i.image}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                                 <h5 class="card-title" style="font-size: 95%;"> Price: <span id="pricepr{{i.id}}">{{i.price}}/-</span></h5>
