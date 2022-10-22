@@ -12,6 +12,9 @@ def index(request):
 
 def blogpost(request, id):
     post = Blogpost.objects.filter(post_id=id)[0]
-    # print(post)
-    return render(request, 'blog/blogpost.html', {'post': post})
+    # print(post.post_id)
+    prev = post.post_id - 1
+    next = post.post_id + 1
+    # print(prev)
+    return render(request, 'blog/blogpost.html', {'post': post, 'prev': prev, 'next': next})
 

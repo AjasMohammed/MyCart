@@ -11,25 +11,29 @@
 <div class="container">
 <div class="row g-5 mt-4">
     <div class="col-md-8">
-      <h2 class="pb-4 fst-italic">
+      <h2 class="pb-4 fst-italic" style="font-family:consolas;">
         {{post.title}}
       </h2>
 
       <article class="blog-post">
-        <h2 class="blog-post-title mb-1">{{post.head0}}</h2>
-        <p class="blog-post-meta">{{post.pub_date}} by <a href="#">Mark</a></p>
+        <pre><h2 class="blog-post-title mb-1">{{post.head0}}</h2></pre>
+        <pre><p class="blog-post-meta">{{post.pub_date}} by <a href="#">Mark</a></p></pre>
 
-        <p>{{post.cont_head0}}</p>
+        <pre><p>{{post.cont_head0}}</p></pre>
         <hr>
-        <h2>{{post.head1}}</h2>
-        <p>{{post.cont_head1}}</p>
-        <h3>{{post.head2}}</h3>
-        <p>{{post.cont_head2}}</p>
+        <pre><h2>{{post.head1}}</h2></pre>
+        <pre> <p>{{post.cont_head1}}</p></pre>
+        <pre><h3>{{post.head2}}</h3></pre>
+        <pre><p>{{post.cont_head2}}</p></pre>
       </article>
+      <nav class="blog-pagination m-4." aria-label="Pagination"  style="font-family:consolas;">
+        <a class="btn btn-outline-primary rounded-pill" href="{{prev}}" id="prev{{post.post_id}}">Prev</a>
+        <a class="btn btn-outline-secondary rounded-pill" href="{{next}}" id="next{{post.post_id}}">Next</a>
+      </nav>
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4"  style="font-family:consolas;">
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
           <h4 class="fst-italic">About</h4>
