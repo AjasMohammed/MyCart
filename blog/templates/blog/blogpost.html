@@ -3,7 +3,9 @@
 {% block title %}Blog Post{% endblock %}
 
 {% block css %}
-
+pre{
+margin:0;
+}
 {% endblock %}
 
 {% block body %}
@@ -17,7 +19,10 @@
 
       <article class="blog-post">
         <pre><h2 class="blog-post-title mb-1">{{post.head0}}</h2></pre>
-        <pre><p class="blog-post-meta">{{post.pub_date}} by <a href="#">Mark</a></p></pre>
+        <pre><p class="blog-post-meta" style="margin:0;">{{post.pub_date}} by <a href="#">Mark</a></p></pre>
+
+<!--        link for like and share button-->
+        <div style="margin-bottom:5px" class="fb-like" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
 
         <pre><p>{{post.cont_head0}}</p></pre>
         <hr>
@@ -26,10 +31,17 @@
         <pre><h3>{{post.head2}}</h3></pre>
         <pre><p>{{post.cont_head2}}</p></pre>
       </article>
-      <nav class="blog-pagination m-4." aria-label="Pagination"  style="font-family:consolas;">
+      <hr>
+      <nav class="blog-pagination" aria-label="Pagination"  style="font-family:consolas;">
+        <div style="display:flex;justify-content:space-between;">
         <a class="btn btn-outline-primary rounded-pill" href="{{prev}}" id="prev{{post.post_id}}">Prev</a>
         <a class="btn btn-outline-secondary rounded-pill" href="{{next}}" id="next{{post.post_id}}">Next</a>
+          </div>
       </nav>
+            <hr>
+<!--link for comment plugin-->
+      <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-width="" data-numposts="1"></div>
+
 
     </div>
 
